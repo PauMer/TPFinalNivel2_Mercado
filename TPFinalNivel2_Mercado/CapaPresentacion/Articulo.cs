@@ -189,5 +189,15 @@ namespace CapaPresentacion
                 cboSubOpcion.Items.Add("Contiene");
             }
         }
+
+        private void btnLimpias_Click(object sender, EventArgs e)
+        {
+            cboOpcion.SelectedIndex = -1;
+            cboSubOpcion.SelectedIndex = -1;
+            cboOpciones.SelectedIndex = -1;
+            cboSubOpciones.SelectedIndex = -1;
+            txtParametro.Text = "";
+            cargar();
+        }
     }
 }

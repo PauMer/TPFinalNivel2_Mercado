@@ -29,6 +29,7 @@ namespace CapaPresentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaArticulos));
             this.lblCodigo = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -47,7 +48,19 @@ namespace CapaPresentacion
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
+            this.errCodigo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errNombre = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errDescripcion = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errMarca = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errCategoria = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errPrecio = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAlta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCodigo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errNombre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errDescripcion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errMarca)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPrecio)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCodigo
@@ -220,6 +233,30 @@ namespace CapaPresentacion
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
             this.cboCategoria.TabIndex = 4;
             // 
+            // errCodigo
+            // 
+            this.errCodigo.ContainerControl = this;
+            // 
+            // errNombre
+            // 
+            this.errNombre.ContainerControl = this;
+            // 
+            // errDescripcion
+            // 
+            this.errDescripcion.ContainerControl = this;
+            // 
+            // errMarca
+            // 
+            this.errMarca.ContainerControl = this;
+            // 
+            // errCategoria
+            // 
+            this.errCategoria.ContainerControl = this;
+            // 
+            // errPrecio
+            // 
+            this.errPrecio.ContainerControl = this;
+            // 
             // AltaArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +284,12 @@ namespace CapaPresentacion
             this.Text = "AltaArticulos";
             this.Load += new System.EventHandler(this.AltaArticulos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAlta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCodigo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errNombre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errDescripcion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errMarca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errPrecio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,5 +314,11 @@ namespace CapaPresentacion
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.ComboBox cboCategoria;
+        private System.Windows.Forms.ErrorProvider errCodigo;
+        private System.Windows.Forms.ErrorProvider errNombre;
+        private System.Windows.Forms.ErrorProvider errDescripcion;
+        private System.Windows.Forms.ErrorProvider errMarca;
+        private System.Windows.Forms.ErrorProvider errCategoria;
+        private System.Windows.Forms.ErrorProvider errPrecio;
     }
 }

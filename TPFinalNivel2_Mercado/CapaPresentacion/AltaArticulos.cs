@@ -33,7 +33,7 @@ namespace CapaPresentacion
             try
             {
                 cargarCbx();
-                if(articulo != null)
+                if (articulo != null)
                 {
                     txtCodigo.Text = articulo.Codigo;
                     txtNombre.Text = articulo.Nombre;
@@ -57,44 +57,50 @@ namespace CapaPresentacion
             cboCategoria.DataSource = categoria.Listar();
             cboCategoria.ValueMember = "Id";
             cboCategoria.DisplayMember = "Descripcion";
+            cboCategoria.SelectedIndex = -1;
             cboMarca.DataSource = marca.Listar();
             cboMarca.ValueMember = "Id";
             cboMarca.DisplayMember = "Descripcion";
+            cboMarca.SelectedIndex = -1;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ArticuloCLN nuevo = new ArticuloCLN();
-            try
+            validarCasilleros();
+            if (validarCasilleros())
             {
-                if (articulo == null)
-                    articulo = new ArticuloCAD();
-                articulo.Codigo = txtCodigo.Text;
-                articulo.Nombre = txtNombre.Text;
-                articulo.Descripcion = txtDescripcion.Text;
-                articulo.Marca = (MarcasCAD)cboMarca.SelectedItem;
-                articulo.Categoria = (CategoriasCAD)cboCategoria.SelectedItem;
-                articulo.ImagenUrl = txtImagen.Text;
-                articulo.Precio = int.Parse(txtPrecio.Text);
+                ArticuloCLN nuevo = new ArticuloCLN();
+                try
+                {
+                    if (articulo == null)
+                        articulo = new ArticuloCAD();
+                    articulo.Codigo = txtCodigo.Text;
+                    articulo.Nombre = txtNombre.Text;
+                    articulo.Descripcion = txtDescripcion.Text;
+                    articulo.Marca = (MarcasCAD)cboMarca.SelectedItem;
+                    articulo.Categoria = (CategoriasCAD)cboCategoria.SelectedItem;
+                    articulo.ImagenUrl = txtImagen.Text;
+                    articulo.Precio = int.Parse(txtPrecio.Text);
 
-                if(articulo.Id != 0)
-                {
-                    nuevo.modificar(articulo);
-                    MessageBox.Show("Modificado exitosamente");
+                    if (articulo.Id != 0)
+                    {
+                        nuevo.modificar(articulo);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        nuevo.Agregar(articulo);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    nuevo.Agregar(articulo);
-                    MessageBox.Show("Agregado exitosamente");
+                    MessageBox.Show(ex.ToString());
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                Close();
+                finally
+                {
+                    Close();
+                }
             }
         }
 
@@ -120,5 +126,59 @@ namespace CapaPresentacion
         {
             this.Close();
         }
+
+        private bool validarCasilleros()
+        {
+            bool bandera = true;
+
+            if (txtCodigo.Text == "")
+            {
+                bandera = false;
+                errCodigo.SetError(txtCodigo, "Debe ingresar un nombre");
+            }
+            if (txtNombre.Text == "")
+            {
+                bandera = false;
+                errNombre.SetError(txtNombre, "Debe ingresar un Código");
+            }
+            if (txtDescripcion.Text == "")
+            {
+                bandera = false;
+                errDescripcion.SetError(txtDescripcion, "Debe ingresar una descripcion");
+            }
+            if (cboMarca.Text == "")
+            {
+                bandera = false;
+                errMarca.SetError(cboMarca, "Debe ingresar una marca");
+            }
+            if (cboCategoria.Text == "")
+            {
+                bandera = false;
+                errCategoria.SetError(cboCategoria, "Debe ingresar una Categoria");
+            }
+            if (!validarSoloNumeros(txtPrecio.Text))
+            {
+                bandera = false;
+                MessageBox.Show("Debes ingresar sólo números en el campo 'Precio'");
+            }
+            if (txtPrecio.Text == "")
+            {
+                bandera = false;
+                errPrecio.SetError(txtPrecio, "Debe ingresar un precio");
+            }
+
+            return bandera;
+        }
+        
+        private bool validarSoloNumeros(string precio)
+        {
+            foreach (char caracter in precio)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
+
     }
 }
