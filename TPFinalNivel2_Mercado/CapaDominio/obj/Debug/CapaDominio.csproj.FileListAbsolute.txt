@@ -1,0 +1,5 @@
+C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\bin\Debug\CapaDominio.dll
+C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\bin\Debug\CapaDominio.pdb
+C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.csproj.CoreCompileInputs.cache
+C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.dll
+C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.pdb
