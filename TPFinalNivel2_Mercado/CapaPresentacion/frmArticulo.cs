@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -70,6 +71,7 @@ namespace CapaPresentacion
             ArticuloNegocio articulo = new ArticuloNegocio();
             try
             {
+                SystemSounds.Exclamation.Play();
                 DialogResult respuesta = MessageBox.Show("¿Estás seguro de eliminar?", "¿Eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (respuesta == DialogResult.Yes)
@@ -87,21 +89,14 @@ namespace CapaPresentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                frmAltaArticulos alta = new frmAltaArticulos();
-                alta.ShowDialog();
-                cargar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            frmAltaArticulos alta = new frmAltaArticulos();
+            alta.ShowDialog();
+            cargar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            try
+            if(dgvArticulos.CurrentCell != null)
             {
                 Articulo seleccionado;
                 seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
@@ -109,9 +104,11 @@ namespace CapaPresentacion
                 modificar.ShowDialog();
                 cargar();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+                SystemSounds.Exclamation.Play();
+                MessageBox.Show("Error");
+                limpiarParametros();
             }
         }
 
@@ -181,6 +178,7 @@ namespace CapaPresentacion
                             cargarDgv(listaFiltrada);
                             break;
                     }
+                    limpiarParametros();
                 }
                 }
                 catch (Exception ex)
@@ -191,7 +189,6 @@ namespace CapaPresentacion
 
         private void cargarDgv(List<Articulo> listaFiltrada)
         {
-            dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
@@ -217,12 +214,17 @@ namespace CapaPresentacion
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            limpiarParametros();
+            cargar();
+        }
+
+        private void limpiarParametros()
+        {
             cboCampo.SelectedIndex = -1;
             cboCaracter.SelectedIndex = -1;
             cboOpciones.SelectedIndex = -1;
             cboSubOpciones.SelectedIndex = -1;
             txtParametro.Text = "";
-            cargar();
         }
 
         private bool validarFiltrado()
