@@ -107,7 +107,7 @@ namespace CapaNegocio
             datos.ejecutarAccion();
         }
 
-        public List<Articulo> Filtrar(int campo, int caracter, string parametro)
+        public List<Articulo> Filtrar(string campo, string caracter, string parametro)
         {
             List<Articulo> lista = new List<Articulo>();
             Conexion datos = new Conexion();
@@ -118,46 +118,46 @@ namespace CapaNegocio
 
                 switch (campo)
                 {
-                    case 0:
+                    case "Código":
                         switch (caracter)
                         {
-                            case 0:
+                            case "Empieza con":
                                 consulta += " and Codigo like '" + parametro + "%'";
                                 break;
-                            case 1:
+                            case "Termina con":
                                 consulta += " and Codigo like '%" + parametro + "'";
                                 break;
-                            case 2:
+                            case "Contiene":
                                 consulta += " and Codigo like '%" + parametro + "%'";
                                 break;
                         }
                         break;
 
-                    case 1:
+                    case "Nombre":
                         switch (caracter)
                         {
-                            case 0:
+                            case "Empieza con":
                                 consulta += " and Nombre like '" + parametro + "%'";
                                 break;
-                            case 1:
+                            case "Termina con":
                                 consulta += " and Nombre like '%" + parametro + "'";
                                 break;
-                            case 2:
+                            case "Contiene":
                                 consulta += " and Nombre like '%" + parametro + "%'";
                                 break;
                         }
                         break;
 
-                    case 2:
+                    case "Descripción":
                         switch (caracter)
                         {
-                            case 0:
+                            case "Empieza con":
                                 consulta += " and A.Descripcion like '" + parametro + "%'";
                                 break;
-                            case 1:
+                            case "Termina con con":
                                 consulta += " and A.Descripcion like '%" + parametro + "'";
                                 break;
-                            case 2:
+                            case "Contiene":
                                 consulta += " and A.Descripcion like '%" + parametro + "%'";
                                 break;
                         }

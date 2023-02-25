@@ -29,6 +29,7 @@ namespace CapaPresentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArticulo));
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -40,15 +41,25 @@ namespace CapaPresentacion
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.cboSubOpciones = new System.Windows.Forms.ComboBox();
             this.gboBusqueda = new System.Windows.Forms.GroupBox();
-            this.btnLimpias = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.lblFiltrar1 = new System.Windows.Forms.Label();
             this.txtParametro = new System.Windows.Forms.TextBox();
             this.cboCaracter = new System.Windows.Forms.ComboBox();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.errParametro = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errCampo = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errOpciones = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errSubO = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errCaracter = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.gboBusqueda.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errParametro)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCampo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errOpciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errSubO)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCaracter)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvArticulos
@@ -132,7 +143,7 @@ namespace CapaPresentacion
             // 
             this.btnFiltrar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFiltrar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnFiltrar.Location = new System.Drawing.Point(423, 75);
+            this.btnFiltrar.Location = new System.Drawing.Point(443, 75);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(79, 29);
             this.btnFiltrar.TabIndex = 22;
@@ -145,7 +156,7 @@ namespace CapaPresentacion
             this.cboSubOpciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboSubOpciones.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSubOpciones.FormattingEnabled = true;
-            this.cboSubOpciones.Location = new System.Drawing.Point(285, 75);
+            this.cboSubOpciones.Location = new System.Drawing.Point(297, 75);
             this.cboSubOpciones.Name = "cboSubOpciones";
             this.cboSubOpciones.Size = new System.Drawing.Size(121, 26);
             this.cboSubOpciones.TabIndex = 23;
@@ -153,7 +164,7 @@ namespace CapaPresentacion
             // gboBusqueda
             // 
             this.gboBusqueda.BackColor = System.Drawing.Color.Transparent;
-            this.gboBusqueda.Controls.Add(this.btnLimpias);
+            this.gboBusqueda.Controls.Add(this.btnLimpiar);
             this.gboBusqueda.Controls.Add(this.lblFiltrar1);
             this.gboBusqueda.Controls.Add(this.txtParametro);
             this.gboBusqueda.Controls.Add(this.cboCaracter);
@@ -171,17 +182,17 @@ namespace CapaPresentacion
             this.gboBusqueda.TabStop = false;
             this.gboBusqueda.Text = "Busqueda";
             // 
-            // btnLimpias
+            // btnLimpiar
             // 
-            this.btnLimpias.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpias.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLimpias.Location = new System.Drawing.Point(520, 75);
-            this.btnLimpias.Name = "btnLimpias";
-            this.btnLimpias.Size = new System.Drawing.Size(79, 29);
-            this.btnLimpias.TabIndex = 28;
-            this.btnLimpias.Text = "Limpiar";
-            this.btnLimpias.UseVisualStyleBackColor = true;
-            this.btnLimpias.Click += new System.EventHandler(this.btnLimpias_Click);
+            this.btnLimpiar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLimpiar.Location = new System.Drawing.Point(532, 75);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(79, 29);
+            this.btnLimpiar.TabIndex = 28;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // lblFiltrar1
             // 
@@ -197,7 +208,7 @@ namespace CapaPresentacion
             // 
             // txtParametro
             // 
-            this.txtParametro.Location = new System.Drawing.Point(423, 35);
+            this.txtParametro.Location = new System.Drawing.Point(443, 36);
             this.txtParametro.Name = "txtParametro";
             this.txtParametro.Size = new System.Drawing.Size(120, 25);
             this.txtParametro.TabIndex = 26;
@@ -207,7 +218,7 @@ namespace CapaPresentacion
             this.cboCaracter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCaracter.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCaracter.FormattingEnabled = true;
-            this.cboCaracter.Location = new System.Drawing.Point(285, 36);
+            this.cboCaracter.Location = new System.Drawing.Point(297, 36);
             this.cboCaracter.Name = "cboCaracter";
             this.cboCaracter.Size = new System.Drawing.Size(121, 26);
             this.cboCaracter.TabIndex = 25;
@@ -217,13 +228,33 @@ namespace CapaPresentacion
             this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCampo.FormattingEnabled = true;
-            this.cboCampo.Location = new System.Drawing.Point(145, 35);
+            this.cboCampo.Location = new System.Drawing.Point(145, 39);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(121, 26);
             this.cboCampo.TabIndex = 24;
-            this.cboCampo.SelectedValueChanged += new System.EventHandler(this.cboOpcion_SelectedValueChanged);
+            this.cboCampo.SelectedValueChanged += new System.EventHandler(this.cboCampo_SelectedValueChanged);
             // 
-            // Articulo
+            // errParametro
+            // 
+            this.errParametro.ContainerControl = this;
+            // 
+            // errCampo
+            // 
+            this.errCampo.ContainerControl = this;
+            // 
+            // errOpciones
+            // 
+            this.errOpciones.ContainerControl = this;
+            // 
+            // errSubO
+            // 
+            this.errSubO.ContainerControl = this;
+            // 
+            // errCaracter
+            // 
+            this.errCaracter.ContainerControl = this;
+            // 
+            // frmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -236,13 +267,18 @@ namespace CapaPresentacion
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvArticulos);
-            this.Name = "Articulo";
+            this.Name = "frmArticulo";
             this.Text = "Articulos";
             this.Load += new System.EventHandler(this.Articulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.gboBusqueda.ResumeLayout(false);
             this.gboBusqueda.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errParametro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCampo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errOpciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errSubO)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errCaracter)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -264,6 +300,11 @@ namespace CapaPresentacion
         private System.Windows.Forms.TextBox txtParametro;
         private System.Windows.Forms.ComboBox cboCaracter;
         private System.Windows.Forms.ComboBox cboCampo;
-        private System.Windows.Forms.Button btnLimpias;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.ErrorProvider errParametro;
+        private System.Windows.Forms.ErrorProvider errCampo;
+        private System.Windows.Forms.ErrorProvider errOpciones;
+        private System.Windows.Forms.ErrorProvider errSubO;
+        private System.Windows.Forms.ErrorProvider errCaracter;
     }
 }

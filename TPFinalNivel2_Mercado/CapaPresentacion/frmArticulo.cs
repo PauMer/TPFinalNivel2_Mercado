@@ -87,18 +87,32 @@ namespace CapaPresentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmAltaArticulos alta = new frmAltaArticulos();
-            alta.ShowDialog();
-            cargar();
+            try
+            {
+                frmAltaArticulos alta = new frmAltaArticulos();
+                alta.ShowDialog();
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            frmAltaArticulos modificar = new frmAltaArticulos(seleccionado);
-            modificar.ShowDialog();
-            cargar();
+            try
+            {
+                Articulo seleccionado;
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                frmAltaArticulos modificar = new frmAltaArticulos(seleccionado);
+                modificar.ShowDialog();
+                cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void cboOpciones_SelectedValueChanged(object sender, EventArgs e)
@@ -123,52 +137,56 @@ namespace CapaPresentacion
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            List<Articulo> listaFiltrada;
-            ArticuloNegocio articulo = new ArticuloNegocio();
-            int indiceB = cboOpciones.SelectedIndex;
-            int campo = cboCampo.SelectedIndex;
-            string parametro = txtParametro.Text;
-            int caracter = cboCaracter.SelectedIndex;
 
             try
             {
-                if(campo == 3)
+                validarFiltrado();
+                if (validarFiltrado() == true)
                 {
-                        if(caracter == 0)
-                        {
-                            listaFiltrada = listaArticulos.FindAll(x => x.Precio <= int.Parse(parametro));
-                            cargarDgv(listaFiltrada);
-                        }
-                        else
-                        {
-                            listaFiltrada = listaArticulos.FindAll(x => x.Precio >= int.Parse(parametro));
-                            cargarDgv(listaFiltrada);
-                        }
-                }
-                else
-                {
-                    listaFiltrada = articulo.Filtrar(campo, caracter, parametro);
-                    cargarDgv(listaFiltrada);
-                }
+                    List<Articulo> listaFiltrada;
+                    ArticuloNegocio articulo = new ArticuloNegocio();
+                    int indiceB = cboOpciones.SelectedIndex;
+                    string campo = (string)cboCampo.SelectedItem;
+                    string parametro = txtParametro.Text;
+                    string caracter = (string)cboCaracter.SelectedItem;
+                    if(campo == "Precio")
+                    {
+                            if(caracter == "Menor o igual a")
+                            {
+                                listaFiltrada = listaArticulos.FindAll(x => x.Precio <= int.Parse(parametro));
+                                cargarDgv(listaFiltrada);
+                            }
+                            else
+                            {
+                                listaFiltrada = listaArticulos.FindAll(x => x.Precio >= int.Parse(parametro));
+                                cargarDgv(listaFiltrada);
+                            }
+                    }
+                    else
+                    {
+                        listaFiltrada = articulo.Filtrar(campo, caracter, parametro);
+                        cargarDgv(listaFiltrada);
+                    }
 
-                switch(indiceB)
-                {
-                    case 0:
-                        Marca marca = (Marca)cboSubOpciones.SelectedItem;
-                        listaFiltrada = listaArticulos.FindAll(x => x.Marca.Id == marca.Id);
-                        cargarDgv(listaFiltrada);
-                        break;
-                    case 1:
-                        Categoria categoria = (Categoria)cboSubOpciones.SelectedItem;
-                        listaFiltrada = listaArticulos.FindAll(x => x.Categoria.Id == categoria.Id);
-                        cargarDgv(listaFiltrada);
-                        break;
+                    switch(indiceB)
+                    {
+                        case 0:
+                            Marca marca = (Marca)cboSubOpciones.SelectedItem;
+                            listaFiltrada = listaArticulos.FindAll(x => x.Marca.Id == marca.Id);
+                            cargarDgv(listaFiltrada);
+                            break;
+                        case 1:
+                            Categoria categoria = (Categoria)cboSubOpciones.SelectedItem;
+                            listaFiltrada = listaArticulos.FindAll(x => x.Categoria.Id == categoria.Id);
+                            cargarDgv(listaFiltrada);
+                            break;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
         }
 
         private void cargarDgv(List<Articulo> listaFiltrada)
@@ -178,14 +196,14 @@ namespace CapaPresentacion
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
         }
-        private void cboOpcion_SelectedValueChanged(object sender, EventArgs e)
+        private void cboCampo_SelectedValueChanged(object sender, EventArgs e)
         {
             int seleccionado = cboCampo.SelectedIndex;
             
             if(seleccionado == 3)
             {
                 cboCaracter.Items.Clear();
-                cboCaracter.Items.Add("Menor o igual a:");
+                cboCaracter.Items.Add("Menor o igual a");
                 cboCaracter.Items.Add("Mayor o igual a");
             }
             else
@@ -197,7 +215,7 @@ namespace CapaPresentacion
             }
         }
 
-        private void btnLimpias_Click(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             cboCampo.SelectedIndex = -1;
             cboCaracter.SelectedIndex = -1;
@@ -205,6 +223,37 @@ namespace CapaPresentacion
             cboSubOpciones.SelectedIndex = -1;
             txtParametro.Text = "";
             cargar();
+        }
+
+        private bool validarFiltrado()
+        {
+            bool bandera = true;
+            
+            if(cboCampo.Text == "" && cboOpciones.Text == "")
+            {
+                errCampo.SetError(cboCampo, "No seleccionó ningún campo");
+                errOpciones.SetError(cboOpciones, "No seleccionó ningún campo");
+                bandera = false;
+            }
+            else
+            {
+                if(cboCampo.Text != "" && cboCaracter.Text == "")
+                {
+                    errCaracter.SetError(cboCaracter, "Seleccione un tipo de busqueda");
+                    bandera = false;
+                }
+                if(cboOpciones.Text != "" && cboSubOpciones.Text == "")
+                {
+                    errSubO.SetError(cboSubOpciones, "Seleccione la marca o categoria deseada");
+                    bandera = false;
+                }
+                if(cboCaracter.Text != "" && txtParametro.Text == "")
+                {
+                    errParametro.SetError(txtParametro, "Especifique el parametro por el cual filtrar");
+                }
+            }
+
+            return bandera;
         }
     }
 }
