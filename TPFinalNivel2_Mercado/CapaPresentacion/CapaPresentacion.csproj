@@ -46,25 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AltaArticulos.cs">
+    <Compile Include="frmAltaArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AltaArticulos.Designer.cs">
-      <DependentUpon>AltaArticulos.cs</DependentUpon>
+    <Compile Include="frmAltaArticulos.Designer.cs">
+      <DependentUpon>frmAltaArticulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Articulo.cs">
+    <Compile Include="frmArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Articulo.Designer.cs">
-      <DependentUpon>Articulo.cs</DependentUpon>
+    <Compile Include="frmArticulo.Designer.cs">
+      <DependentUpon>frmArticulo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AltaArticulos.resx">
-      <DependentUpon>AltaArticulos.cs</DependentUpon>
+    <EmbeddedResource Include="frmAltaArticulos.resx">
+      <DependentUpon>frmAltaArticulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Articulo.resx">
-      <DependentUpon>Articulo.cs</DependentUpon>
+    <EmbeddedResource Include="frmArticulo.resx">
+      <DependentUpon>frmArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

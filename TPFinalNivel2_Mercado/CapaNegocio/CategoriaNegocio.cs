@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    public class CategoriaN
+    public class CategoriaNegocio
     {
-        public List<CategoriasCAD> Listar()
+        public List<Categoria> Listar()
         {
-            List<CategoriasCAD> lista = new List<CategoriasCAD>();
+            List<Categoria> lista = new List<Categoria>();
             Conexion datos = new Conexion();
             try
             {
@@ -20,7 +20,7 @@ namespace CapaNegocio
 
                 while (datos.Lector.Read())
                 {
-                    CategoriasCAD aux = new CategoriasCAD();
+                    Categoria aux = new Categoria();
                     aux.Id = Convert.ToInt32(datos.Lector["Id"]);
                     aux.Descripcion = (String)datos.Lector["Descripcion"];
 

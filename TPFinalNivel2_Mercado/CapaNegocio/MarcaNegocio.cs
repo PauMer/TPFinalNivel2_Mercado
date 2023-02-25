@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    public class MarcaN
+    public class MarcaNegocio
     {
-        public List<MarcasCAD> Listar()
+        public List<Marca> Listar()
         {
-            List<MarcasCAD> lista = new List<MarcasCAD>();
+            List<Marca> lista = new List<Marca>();
             Conexion datos = new Conexion();
             try
             {
@@ -20,7 +20,7 @@ namespace CapaNegocio
 
                 while (datos.Lector.Read())
                 {
-                    MarcasCAD aux = new MarcasCAD();
+                    Marca aux = new Marca();
                     aux.Id = Convert.ToInt32(datos.Lector["Id"]);
                     aux.Descripcion = (String)datos.Lector["Descripcion"];
 

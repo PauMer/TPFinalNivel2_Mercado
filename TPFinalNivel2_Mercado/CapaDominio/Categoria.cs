@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaDominio
 {
-    public class CategoriasCAD
+    public class Categoria
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

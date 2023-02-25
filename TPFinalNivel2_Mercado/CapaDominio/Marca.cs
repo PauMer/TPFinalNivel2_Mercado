@@ -8,7 +8,7 @@ using System.Data;
 
 namespace CapaDominio
 {
-    public class MarcasCAD
+    public class Marca
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

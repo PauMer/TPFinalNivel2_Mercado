@@ -12,16 +12,16 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class AltaArticulos : Form
+    public partial class frmAltaArticulos : Form
     {
-        private List<CategoriasCAD> listaC = new List<CategoriasCAD>();
-        private ArticuloCAD articulo = null;
+        private List<Categoria> listaC = new List<Categoria>();
+        private Articulo articulo = null;
 
-        public AltaArticulos()
+        public frmAltaArticulos()
         {
             InitializeComponent();
         }
-        public AltaArticulos(ArticuloCAD articulo)
+        public frmAltaArticulos(Articulo articulo)
         {
             InitializeComponent();
             this.articulo = articulo;
@@ -52,8 +52,8 @@ namespace CapaPresentacion
         }
         public void cargarCbx()
         {
-            CategoriaN categoria = new CategoriaN();
-            MarcaN marca = new MarcaN();
+            CategoriaNegocio categoria = new CategoriaNegocio();
+            MarcaNegocio marca = new MarcaNegocio();
             cboCategoria.DataSource = categoria.Listar();
             cboCategoria.ValueMember = "Id";
             cboCategoria.DisplayMember = "Descripcion";
@@ -69,16 +69,16 @@ namespace CapaPresentacion
             validarCasilleros();
             if (validarCasilleros())
             {
-                ArticuloCLN nuevo = new ArticuloCLN();
+                ArticuloNegocio nuevo = new ArticuloNegocio();
                 try
                 {
                     if (articulo == null)
-                        articulo = new ArticuloCAD();
+                        articulo = new Articulo();
                     articulo.Codigo = txtCodigo.Text;
                     articulo.Nombre = txtNombre.Text;
                     articulo.Descripcion = txtDescripcion.Text;
-                    articulo.Marca = (MarcasCAD)cboMarca.SelectedItem;
-                    articulo.Categoria = (CategoriasCAD)cboCategoria.SelectedItem;
+                    articulo.Marca = (Marca)cboMarca.SelectedItem;
+                    articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                     articulo.ImagenUrl = txtImagen.Text;
                     articulo.Precio = int.Parse(txtPrecio.Text);
 

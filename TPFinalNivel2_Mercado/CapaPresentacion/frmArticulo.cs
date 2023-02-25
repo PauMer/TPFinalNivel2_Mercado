@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class Articulo : Form
+    public partial class frmArticulo : Form
     {
-        private List<ArticuloCAD> listaArticulos;
+        private List<Articulo> listaArticulos;
         private int id;
-        public Articulo()
+        public frmArticulo()
         {
             InitializeComponent();
         }
@@ -28,25 +28,25 @@ namespace CapaPresentacion
 
         public void cargar()
         {
-            ArticuloCLN articulo = new ArticuloCLN();
+            ArticuloNegocio articulo = new ArticuloNegocio();
             listaArticulos = articulo.Listar();
             cargarDgv(listaArticulos);
             cargarImagen(listaArticulos[0].ImagenUrl);
             cboOpciones.Items.Clear();
             cboOpciones.Items.Add("Marca");
             cboOpciones.Items.Add("Categoria");
-            cboOpcion.Items.Clear();
-            cboOpcion.Items.Add("Código");
-            cboOpcion.Items.Add("Nombre");
-            cboOpcion.Items.Add("Descripción");
-            cboOpcion.Items.Add("Precio");
+            cboCampo.Items.Clear();
+            cboCampo.Items.Add("Código");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Descripción");
+            cboCampo.Items.Add("Precio");
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             if(dgvArticulos.CurrentRow != null)
             {
-                ArticuloCAD articuloSelect = (ArticuloCAD)dgvArticulos.CurrentRow.DataBoundItem;
+                Articulo articuloSelect = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 cargarImagen(articuloSelect.ImagenUrl);
                 id = articuloSelect.Id;
             }
@@ -67,7 +67,7 @@ namespace CapaPresentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            ArticuloCLN articulo = new ArticuloCLN();
+            ArticuloNegocio articulo = new ArticuloNegocio();
             try
             {
                 DialogResult respuesta = MessageBox.Show("¿Estás seguro de eliminar?", "¿Eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -87,16 +87,16 @@ namespace CapaPresentacion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            AltaArticulos alta = new AltaArticulos();
+            frmAltaArticulos alta = new frmAltaArticulos();
             alta.ShowDialog();
             cargar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            ArticuloCAD seleccionado;
-            seleccionado = (ArticuloCAD)dgvArticulos.CurrentRow.DataBoundItem;
-            AltaArticulos modificar = new AltaArticulos(seleccionado);
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAltaArticulos modificar = new frmAltaArticulos(seleccionado);
             modificar.ShowDialog();
             cargar();
         }
@@ -104,8 +104,8 @@ namespace CapaPresentacion
         private void cboOpciones_SelectedValueChanged(object sender, EventArgs e)
         {
             int seleccionado = cboOpciones.SelectedIndex;
-            CategoriaN categoria = new CategoriaN();
-            MarcaN marca = new MarcaN();
+            CategoriaNegocio categoria = new CategoriaNegocio();
+            MarcaNegocio marca = new MarcaNegocio();
             switch (seleccionado)
             {
                 case 0:
@@ -123,48 +123,55 @@ namespace CapaPresentacion
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            List<ArticuloCAD> listaFiltrada;
-            ArticuloCLN articulo = new ArticuloCLN();
+            List<Articulo> listaFiltrada;
+            ArticuloNegocio articulo = new ArticuloNegocio();
             int indiceB = cboOpciones.SelectedIndex;
-            int indiceA = cboOpcion.SelectedIndex;
+            int campo = cboCampo.SelectedIndex;
             string parametro = txtParametro.Text;
-            int opcion = cboSubOpcion.SelectedIndex;
+            int caracter = cboCaracter.SelectedIndex;
 
-            if(indiceA == 3)
+            try
             {
-                    if(opcion == 0)
-                    {
-                        listaFiltrada = listaArticulos.FindAll(x => x.Precio <= int.Parse(parametro));
-                        cargarDgv(listaFiltrada);
-                    }
-                    else
-                    {
-                        listaFiltrada = listaArticulos.FindAll(x => x.Precio >= int.Parse(parametro));
-                        cargarDgv(listaFiltrada);
-                    }
-            }
-            else
-            {
-                listaFiltrada = articulo.Filtrar(indiceA, opcion, parametro);
-                cargarDgv(listaFiltrada);
-            }
+                if(campo == 3)
+                {
+                        if(caracter == 0)
+                        {
+                            listaFiltrada = listaArticulos.FindAll(x => x.Precio <= int.Parse(parametro));
+                            cargarDgv(listaFiltrada);
+                        }
+                        else
+                        {
+                            listaFiltrada = listaArticulos.FindAll(x => x.Precio >= int.Parse(parametro));
+                            cargarDgv(listaFiltrada);
+                        }
+                }
+                else
+                {
+                    listaFiltrada = articulo.Filtrar(campo, caracter, parametro);
+                    cargarDgv(listaFiltrada);
+                }
 
-            switch(indiceB)
+                switch(indiceB)
+                {
+                    case 0:
+                        Marca marca = (Marca)cboSubOpciones.SelectedItem;
+                        listaFiltrada = listaArticulos.FindAll(x => x.Marca.Id == marca.Id);
+                        cargarDgv(listaFiltrada);
+                        break;
+                    case 1:
+                        Categoria categoria = (Categoria)cboSubOpciones.SelectedItem;
+                        listaFiltrada = listaArticulos.FindAll(x => x.Categoria.Id == categoria.Id);
+                        cargarDgv(listaFiltrada);
+                        break;
+                }
+            }
+            catch (Exception ex)
             {
-                case 0:
-                    MarcasCAD marca = (MarcasCAD)cboSubOpciones.SelectedItem;
-                    listaFiltrada = listaArticulos.FindAll(x => x.Marca.Id == marca.Id);
-                    cargarDgv(listaFiltrada);
-                    break;
-                case 1:
-                    CategoriasCAD categoria = (CategoriasCAD)cboSubOpciones.SelectedItem;
-                    listaFiltrada = listaArticulos.FindAll(x => x.Categoria.Id == categoria.Id);
-                    cargarDgv(listaFiltrada);
-                    break;
+                MessageBox.Show(ex.ToString());
             }
         }
 
-        private void cargarDgv(List<ArticuloCAD> listaFiltrada)
+        private void cargarDgv(List<Articulo> listaFiltrada)
         {
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
@@ -173,27 +180,27 @@ namespace CapaPresentacion
         }
         private void cboOpcion_SelectedValueChanged(object sender, EventArgs e)
         {
-            int seleccionado = cboOpcion.SelectedIndex;
+            int seleccionado = cboCampo.SelectedIndex;
             
             if(seleccionado == 3)
             {
-                cboSubOpcion.Items.Clear();
-                cboSubOpcion.Items.Add("Menor o igual a:");
-                cboSubOpcion.Items.Add("Mayor o igual a");
+                cboCaracter.Items.Clear();
+                cboCaracter.Items.Add("Menor o igual a:");
+                cboCaracter.Items.Add("Mayor o igual a");
             }
             else
             {
-                cboSubOpcion.Items.Clear();
-                cboSubOpcion.Items.Add("Empieza con");
-                cboSubOpcion.Items.Add("Termina con");
-                cboSubOpcion.Items.Add("Contiene");
+                cboCaracter.Items.Clear();
+                cboCaracter.Items.Add("Empieza con");
+                cboCaracter.Items.Add("Termina con");
+                cboCaracter.Items.Add("Contiene");
             }
         }
 
         private void btnLimpias_Click(object sender, EventArgs e)
         {
-            cboOpcion.SelectedIndex = -1;
-            cboSubOpcion.SelectedIndex = -1;
+            cboCampo.SelectedIndex = -1;
+            cboCaracter.SelectedIndex = -1;
             cboOpciones.SelectedIndex = -1;
             cboSubOpciones.SelectedIndex = -1;
             txtParametro.Text = "";

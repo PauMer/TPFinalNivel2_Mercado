@@ -3,3 +3,9 @@ C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\Cap
 C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.csproj.CoreCompileInputs.cache
 C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.dll
 C:\Users\guanc\Downloads\TPFinalNivel2_MercadoFinalito\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.pdb
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaDominio\bin\Debug\CapaDominio.dll
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaDominio\bin\Debug\CapaDominio.pdb
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.csproj.AssemblyReference.cache
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.csproj.CoreCompileInputs.cache
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.dll
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaDominio\obj\Debug\CapaDominio.pdb

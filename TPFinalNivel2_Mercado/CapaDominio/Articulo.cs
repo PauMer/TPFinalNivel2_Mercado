@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapaDominio
 {
-    public class ArticuloCAD
+    public class Articulo
     {
         public int Id { get; set; }
         public string Codigo { get; set; }
@@ -16,8 +16,8 @@ namespace CapaDominio
         public string Descripcion { get; set; }
         public string ImagenUrl { get; set; }
         public int Precio { get; set; }
-        public CategoriasCAD Categoria { get; set; }
-        public MarcasCAD Marca { get; set; }
+        public Categoria Categoria { get; set; }
+        public Marca Marca { get; set; }
 
     }
 }

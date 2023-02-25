@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
-    public class ArticuloCLN
+    public class ArticuloNegocio
     {
         private Conexion datos = new Conexion();
-        public List<ArticuloCAD> Listar()
+        public List<Articulo> Listar()
         {
-            List<ArticuloCAD> lista = new List<ArticuloCAD>();
+            List<Articulo> lista = new List<Articulo>();
 
             try
             {
@@ -24,17 +24,17 @@ namespace CapaNegocio
 
                 while (datos.Lector.Read())
                 {
-                    ArticuloCAD aux = new ArticuloCAD();
+                    Articulo aux = new Articulo();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.Precio = Convert.ToInt32(datos.Lector["Precio"]);
-                    aux.Marca = new MarcasCAD();
+                    aux.Marca = new Marca();
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
-                    aux.Categoria = new CategoriasCAD();
+                    aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 
@@ -53,7 +53,7 @@ namespace CapaNegocio
 
         }
 
-        public void Agregar(ArticuloCAD nuevo)
+        public void Agregar(Articulo nuevo)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace CapaNegocio
             }
         }
 
-        public void modificar(ArticuloCAD articulo)
+        public void modificar(Articulo articulo)
         {
             try
             {
@@ -107,19 +107,19 @@ namespace CapaNegocio
             datos.ejecutarAccion();
         }
 
-        public List<ArticuloCAD> Filtrar(int atributo, int opcion, string parametro)
+        public List<Articulo> Filtrar(int campo, int caracter, string parametro)
         {
-            List<ArticuloCAD> lista = new List<ArticuloCAD>();
+            List<Articulo> lista = new List<Articulo>();
             Conexion datos = new Conexion();
 
             try
             {
                 string consulta = "SELECT A.Id, Codigo, Nombre, A.Descripcion, ImagenUrl, Precio, M.Descripcion Marca, C.Descripcion Categoria, A.IdCategoria, A.IdMarca FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE A.IdMarca = M.Id AND A.IdCategoria = C.Id";
 
-                switch (atributo)
+                switch (campo)
                 {
                     case 0:
-                        switch (opcion)
+                        switch (caracter)
                         {
                             case 0:
                                 consulta += " and Codigo like '" + parametro + "%'";
@@ -134,7 +134,7 @@ namespace CapaNegocio
                         break;
 
                     case 1:
-                        switch (opcion)
+                        switch (caracter)
                         {
                             case 0:
                                 consulta += " and Nombre like '" + parametro + "%'";
@@ -149,7 +149,7 @@ namespace CapaNegocio
                         break;
 
                     case 2:
-                        switch (opcion)
+                        switch (caracter)
                         {
                             case 0:
                                 consulta += " and A.Descripcion like '" + parametro + "%'";
@@ -169,17 +169,17 @@ namespace CapaNegocio
 
                 while (datos.Lector.Read())
                 {
-                    ArticuloCAD aux = new ArticuloCAD();
+                    Articulo aux = new Articulo();
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
                     aux.Precio = Convert.ToInt32(datos.Lector["Precio"]);
-                    aux.Marca = new MarcasCAD();
+                    aux.Marca = new Marca();
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
-                    aux.Categoria = new CategoriasCAD();
+                    aux.Categoria = new Categoria();
                     aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
 

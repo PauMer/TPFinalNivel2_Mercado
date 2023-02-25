@@ -1,7 +1,7 @@
 ﻿
 namespace CapaPresentacion
 {
-    partial class Articulo
+    partial class frmArticulo
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace CapaPresentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Articulo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArticulo));
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
@@ -40,12 +40,12 @@ namespace CapaPresentacion
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.cboSubOpciones = new System.Windows.Forms.ComboBox();
             this.gboBusqueda = new System.Windows.Forms.GroupBox();
+            this.btnLimpias = new System.Windows.Forms.Button();
             this.lblFiltrar1 = new System.Windows.Forms.Label();
             this.txtParametro = new System.Windows.Forms.TextBox();
-            this.cboSubOpcion = new System.Windows.Forms.ComboBox();
-            this.cboOpcion = new System.Windows.Forms.ComboBox();
+            this.cboCaracter = new System.Windows.Forms.ComboBox();
+            this.cboCampo = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnLimpias = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.gboBusqueda.SuspendLayout();
@@ -65,7 +65,7 @@ namespace CapaPresentacion
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(354, 316);
+            this.btnAgregar.Location = new System.Drawing.Point(346, 316);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(84, 32);
             this.btnAgregar.TabIndex = 10;
@@ -86,7 +86,7 @@ namespace CapaPresentacion
             // btnModificar
             // 
             this.btnModificar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificar.Location = new System.Drawing.Point(461, 316);
+            this.btnModificar.Location = new System.Drawing.Point(455, 316);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(84, 32);
             this.btnModificar.TabIndex = 18;
@@ -156,8 +156,8 @@ namespace CapaPresentacion
             this.gboBusqueda.Controls.Add(this.btnLimpias);
             this.gboBusqueda.Controls.Add(this.lblFiltrar1);
             this.gboBusqueda.Controls.Add(this.txtParametro);
-            this.gboBusqueda.Controls.Add(this.cboSubOpcion);
-            this.gboBusqueda.Controls.Add(this.cboOpcion);
+            this.gboBusqueda.Controls.Add(this.cboCaracter);
+            this.gboBusqueda.Controls.Add(this.cboCampo);
             this.gboBusqueda.Controls.Add(this.lblFiltro);
             this.gboBusqueda.Controls.Add(this.btnFiltrar);
             this.gboBusqueda.Controls.Add(this.cboSubOpciones);
@@ -170,6 +170,18 @@ namespace CapaPresentacion
             this.gboBusqueda.TabIndex = 24;
             this.gboBusqueda.TabStop = false;
             this.gboBusqueda.Text = "Busqueda";
+            // 
+            // btnLimpias
+            // 
+            this.btnLimpias.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpias.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLimpias.Location = new System.Drawing.Point(520, 75);
+            this.btnLimpias.Name = "btnLimpias";
+            this.btnLimpias.Size = new System.Drawing.Size(79, 29);
+            this.btnLimpias.TabIndex = 28;
+            this.btnLimpias.Text = "Limpiar";
+            this.btnLimpias.UseVisualStyleBackColor = true;
+            this.btnLimpias.Click += new System.EventHandler(this.btnLimpias_Click);
             // 
             // lblFiltrar1
             // 
@@ -190,38 +202,26 @@ namespace CapaPresentacion
             this.txtParametro.Size = new System.Drawing.Size(120, 25);
             this.txtParametro.TabIndex = 26;
             // 
-            // cboSubOpcion
+            // cboCaracter
             // 
-            this.cboSubOpcion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSubOpcion.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSubOpcion.FormattingEnabled = true;
-            this.cboSubOpcion.Location = new System.Drawing.Point(285, 36);
-            this.cboSubOpcion.Name = "cboSubOpcion";
-            this.cboSubOpcion.Size = new System.Drawing.Size(121, 26);
-            this.cboSubOpcion.TabIndex = 25;
+            this.cboCaracter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCaracter.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCaracter.FormattingEnabled = true;
+            this.cboCaracter.Location = new System.Drawing.Point(285, 36);
+            this.cboCaracter.Name = "cboCaracter";
+            this.cboCaracter.Size = new System.Drawing.Size(121, 26);
+            this.cboCaracter.TabIndex = 25;
             // 
-            // cboOpcion
+            // cboCampo
             // 
-            this.cboOpcion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboOpcion.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboOpcion.FormattingEnabled = true;
-            this.cboOpcion.Location = new System.Drawing.Point(145, 35);
-            this.cboOpcion.Name = "cboOpcion";
-            this.cboOpcion.Size = new System.Drawing.Size(121, 26);
-            this.cboOpcion.TabIndex = 24;
-            this.cboOpcion.SelectedValueChanged += new System.EventHandler(this.cboOpcion_SelectedValueChanged);
-            // 
-            // btnLimpias
-            // 
-            this.btnLimpias.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpias.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLimpias.Location = new System.Drawing.Point(520, 75);
-            this.btnLimpias.Name = "btnLimpias";
-            this.btnLimpias.Size = new System.Drawing.Size(79, 29);
-            this.btnLimpias.TabIndex = 28;
-            this.btnLimpias.Text = "Limpiar";
-            this.btnLimpias.UseVisualStyleBackColor = true;
-            this.btnLimpias.Click += new System.EventHandler(this.btnLimpias_Click);
+            this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCampo.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCampo.FormattingEnabled = true;
+            this.cboCampo.Location = new System.Drawing.Point(145, 35);
+            this.cboCampo.Name = "cboCampo";
+            this.cboCampo.Size = new System.Drawing.Size(121, 26);
+            this.cboCampo.TabIndex = 24;
+            this.cboCampo.SelectedValueChanged += new System.EventHandler(this.cboOpcion_SelectedValueChanged);
             // 
             // Articulo
             // 
@@ -262,8 +262,8 @@ namespace CapaPresentacion
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lblFiltrar1;
         private System.Windows.Forms.TextBox txtParametro;
-        private System.Windows.Forms.ComboBox cboSubOpcion;
-        private System.Windows.Forms.ComboBox cboOpcion;
+        private System.Windows.Forms.ComboBox cboCaracter;
+        private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.Button btnLimpias;
     }
 }

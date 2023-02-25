@@ -22,11 +22,11 @@ C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\Cap
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\bin\Debug\CapaDominio.pdb
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\bin\Debug\CapaNegocio.pdb
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.AssemblyReference.cache
-C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.AltaArticulos.resources
-C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.Articulo.resources
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.Properties.Resources.resources
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.GenerateResource.cache
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.CoreCompileInputs.cache
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.CopyComplete
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.exe
 C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.frmAltaArticulos.resources
+C:\Users\paula\Downloads\TPFinalNivel2_Mercado Gustavo\TPFinalNivel2_Mercado\CapaPresentacion\obj\Debug\CapaPresentacion.frmArticulo.resources
