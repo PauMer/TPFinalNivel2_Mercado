@@ -68,21 +68,29 @@ namespace CapaPresentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            ArticuloNegocio articulo = new ArticuloNegocio();
-            try
+           if(dgvArticulos.CurrentCell != null)
             {
-                SystemSounds.Exclamation.Play();
-                DialogResult respuesta = MessageBox.Show("¿Estás seguro de eliminar?", "¿Eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (respuesta == DialogResult.Yes)
+                ArticuloNegocio articulo = new ArticuloNegocio();
+                try
                 {
-                    articulo.eliminarArticulo(id);
-                    cargar();
+                    SystemSounds.Exclamation.Play();
+                    DialogResult respuesta = MessageBox.Show("¿Estás seguro de eliminar?", "¿Eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        articulo.eliminarArticulo(id);
+                        cargar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SystemSounds.Exclamation.Play();
+                    MessageBox.Show(ex.ToString());
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Debe seleccionar un artículo");
             }
             
         }
