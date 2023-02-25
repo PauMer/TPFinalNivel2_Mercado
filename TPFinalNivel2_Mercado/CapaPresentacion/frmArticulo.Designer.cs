@@ -29,7 +29,6 @@ namespace CapaPresentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArticulo));
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -47,19 +46,9 @@ namespace CapaPresentacion
             this.cboCaracter = new System.Windows.Forms.ComboBox();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.errParametro = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errCampo = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errOpciones = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errSubO = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errCaracter = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.gboBusqueda.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errParametro)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errCampo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errOpciones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errSubO)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errCaracter)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvArticulos
@@ -234,26 +223,6 @@ namespace CapaPresentacion
             this.cboCampo.TabIndex = 24;
             this.cboCampo.SelectedValueChanged += new System.EventHandler(this.cboCampo_SelectedValueChanged);
             // 
-            // errParametro
-            // 
-            this.errParametro.ContainerControl = this;
-            // 
-            // errCampo
-            // 
-            this.errCampo.ContainerControl = this;
-            // 
-            // errOpciones
-            // 
-            this.errOpciones.ContainerControl = this;
-            // 
-            // errSubO
-            // 
-            this.errSubO.ContainerControl = this;
-            // 
-            // errCaracter
-            // 
-            this.errCaracter.ContainerControl = this;
-            // 
             // frmArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +236,7 @@ namespace CapaPresentacion
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvArticulos);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmArticulo";
             this.Text = "Articulos";
             this.Load += new System.EventHandler(this.Articulo_Load);
@@ -274,11 +244,6 @@ namespace CapaPresentacion
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.gboBusqueda.ResumeLayout(false);
             this.gboBusqueda.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errParametro)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errCampo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errOpciones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errSubO)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errCaracter)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -301,10 +266,5 @@ namespace CapaPresentacion
         private System.Windows.Forms.ComboBox cboCaracter;
         private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.ErrorProvider errParametro;
-        private System.Windows.Forms.ErrorProvider errCampo;
-        private System.Windows.Forms.ErrorProvider errOpciones;
-        private System.Windows.Forms.ErrorProvider errSubO;
-        private System.Windows.Forms.ErrorProvider errCaracter;
     }
 }

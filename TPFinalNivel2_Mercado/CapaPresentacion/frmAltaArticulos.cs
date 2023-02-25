@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace CapaPresentacion
 {
@@ -16,6 +18,7 @@ namespace CapaPresentacion
     {
         private List<Categoria> listaC = new List<Categoria>();
         private Articulo articulo = null;
+        private OpenFileDialog archivo = null;
 
         public frmAltaArticulos()
         {
@@ -66,7 +69,6 @@ namespace CapaPresentacion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            validarCasilleros();
             if (validarCasilleros())
             {
                 ArticuloNegocio nuevo = new ArticuloNegocio();
@@ -92,6 +94,9 @@ namespace CapaPresentacion
                         nuevo.Agregar(articulo);
                         MessageBox.Show("Agregado exitosamente");
                     }
+                    if(archivo != null && !(txtImagen.Text.ToUpper().Contains("HTTP")))
+                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["Archivos"] + archivo.SafeFileName);
+              
                 }
                 catch (Exception ex)
                 {
@@ -180,5 +185,15 @@ namespace CapaPresentacion
             return true;
         }
 
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                txtImagen.Text = archivo.FileName;
+                cargarImagen(txtImagen.Text);
+            }
+        }
     }
 }

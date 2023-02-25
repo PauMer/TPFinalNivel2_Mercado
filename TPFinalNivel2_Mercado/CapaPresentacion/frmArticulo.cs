@@ -137,8 +137,7 @@ namespace CapaPresentacion
 
             try
             {
-                validarFiltrado();
-                if (validarFiltrado() == true)
+                if (validarFiltrado())
                 {
                     List<Articulo> listaFiltrada;
                     ArticuloNegocio articulo = new ArticuloNegocio();
@@ -233,25 +232,25 @@ namespace CapaPresentacion
             
             if(cboCampo.Text == "" && cboOpciones.Text == "")
             {
-                errCampo.SetError(cboCampo, "No seleccionó ningún campo");
-                errOpciones.SetError(cboOpciones, "No seleccionó ningún campo");
+                MessageBox.Show("No seleccionó ningún campo");
                 bandera = false;
             }
             else
             {
                 if(cboCampo.Text != "" && cboCaracter.Text == "")
                 {
-                    errCaracter.SetError(cboCaracter, "Seleccione un tipo de busqueda");
+                    MessageBox.Show("Seleccione un tipo de busqueda");
                     bandera = false;
                 }
                 if(cboOpciones.Text != "" && cboSubOpciones.Text == "")
                 {
-                    errSubO.SetError(cboSubOpciones, "Seleccione la marca o categoria deseada");
+                    MessageBox.Show("Seleccione la marca o categoria deseada");
                     bandera = false;
                 }
                 if(cboCaracter.Text != "" && txtParametro.Text == "")
                 {
-                    errParametro.SetError(txtParametro, "Especifique el parametro por el cual filtrar");
+                    MessageBox.Show("Especifique el parametro por el cual filtrar");
+                    bandera = false;
                 }
             }
 

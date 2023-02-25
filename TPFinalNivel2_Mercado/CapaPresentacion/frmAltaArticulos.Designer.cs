@@ -54,6 +54,7 @@ namespace CapaPresentacion
             this.errMarca = new System.Windows.Forms.ErrorProvider(this.components);
             this.errCategoria = new System.Windows.Forms.ErrorProvider(this.components);
             this.errPrecio = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAlta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errNombre)).BeginInit();
@@ -202,9 +203,9 @@ namespace CapaPresentacion
             // 
             // txtImagen
             // 
-            this.txtImagen.Location = new System.Drawing.Point(148, 176);
+            this.txtImagen.Location = new System.Drawing.Point(148, 174);
             this.txtImagen.Name = "txtImagen";
-            this.txtImagen.Size = new System.Drawing.Size(121, 20);
+            this.txtImagen.Size = new System.Drawing.Size(93, 20);
             this.txtImagen.TabIndex = 5;
             this.txtImagen.Leave += new System.EventHandler(this.txtImagen_Leave);
             // 
@@ -257,12 +258,23 @@ namespace CapaPresentacion
             // 
             this.errPrecio.ContainerControl = this;
             // 
-            // AltaArticulos
+            // btnAgregarImagen
+            // 
+            this.btnAgregarImagen.Location = new System.Drawing.Point(243, 172);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(26, 23);
+            this.btnAgregarImagen.TabIndex = 10;
+            this.btnAgregarImagen.Text = "+";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            // 
+            // frmAltaArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(528, 343);
+            this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.txtPrecio);
@@ -280,7 +292,8 @@ namespace CapaPresentacion
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblCodigo);
-            this.Name = "AltaArticulos";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "frmAltaArticulos";
             this.Text = "AltaArticulos";
             this.Load += new System.EventHandler(this.AltaArticulos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxAlta)).EndInit();
@@ -320,5 +333,6 @@ namespace CapaPresentacion
         private System.Windows.Forms.ErrorProvider errMarca;
         private System.Windows.Forms.ErrorProvider errCategoria;
         private System.Windows.Forms.ErrorProvider errPrecio;
+        private System.Windows.Forms.Button btnAgregarImagen;
     }
 }
