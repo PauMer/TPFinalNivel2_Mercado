@@ -32,7 +32,6 @@ namespace CapaPresentacion
             ArticuloNegocio articulo = new ArticuloNegocio();
             listaArticulos = articulo.Listar();
             cargarDgv(listaArticulos);
-            cargarImagen(listaArticulos[0].ImagenUrl);
             cboOpciones.Items.Clear();
             cboOpciones.Items.Add("Marca");
             cboOpciones.Items.Add("Categoria");
@@ -45,7 +44,7 @@ namespace CapaPresentacion
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvArticulos.CurrentRow != null)
+            if (dgvArticulos.CurrentRow != null)
             {
                 Articulo articuloSelect = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 cargarImagen(articuloSelect.ImagenUrl);
@@ -55,6 +54,7 @@ namespace CapaPresentacion
 
         public void cargarImagen (string imagen)
         {
+            pbxArticulo.Visible = true;
             try
             {
                 pbxArticulo.Load(imagen);
@@ -80,6 +80,7 @@ namespace CapaPresentacion
                     {
                         articulo.eliminarArticulo(id);
                         cargar();
+                        pbxArticulo.Visible = false;
                     }
                 }
                 catch (Exception ex)
@@ -263,6 +264,11 @@ namespace CapaPresentacion
             }
 
             return bandera;
+        }
+
+        private void dgvArticulos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            pbxArticulo.Visible = true;
         }
     }
 }
